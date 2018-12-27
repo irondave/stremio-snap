@@ -1,0 +1,98 @@
+app-id: org.stremio.Stremio
+branch: stable
+runtime: org.kde.Platform
+runtime-version: '5.11'
+sdk: org.kde.Sdk
+command: stremio
+rename-icon: stremio
+finish-args:
+  - --require-version=0.11.4 # fixes file saving
+  - --share=ipc
+  - --socket=x11
+  - --socket=wayland
+  - --device=all # webcams
+  - --socket=pulseaudio
+  - --share=network
+  - --filesystem=host
+  - --filesystem=xdg-config/kdeglobals:ro
+  - --env=FREI0R_PATH=/app/lib/frei0r-1
+  - --env=LADSPA_PATH=/app/lib/ladspa
+cleanup:
+  - /include
+  - /lib/pkgconfig
+  - /lib/cmake
+  - /mkspecs
+  - /share/aclocal
+  - /share/gtk-doc
+  - /share/man
+  - /share/pkgconfig
+  - '*.a'
+  - '*.la'
+  - '*.cmake'
+modules:
+  - name: nodejs
+    sources:
+      - type: archive
+        url: https://nodejs.org/dist/v10.15.0/node-v10.15.0-linux-x64.tar.gz
+        sha256: f0b4ff9a74cbc0106bbf3ee7715f970101ac5b1bbe814404d7a0673d1da9f674
+
+  - name: ffmpeg
+    sources:
+      - type: archive
+        url: https://ffmpeg.org/releases/ffmpeg-4.1.tar.xz
+        sha256: a38ec4d026efb58506a99ad5cd23d5a9793b4bf415f2c4c2e9c1bb444acd1994
+
+  - name: qt5-webengine
+    sources:
+      - type: archive
+        url: https://github.com/qt/qtwebengine/archive/v5.11.3.tar.gz
+        sha256: ce5224cf70e42cb77d3c957a2cccd15ca52ec27dd77ae7628bdb27e8878dbf12
+
+  - name: qt5-webchannel
+    sources:
+      - type: archive
+        url: https://github.com/qt/qtwebchannel/archive/v5.11.3.tar.gz
+        sha256: d493d08e220528393bc5f545da66ec3df770591036a9e9b3d0de6228c13a5858
+
+  - name: qt5-declarative
+    sources:
+      - type: archive
+        url: https://github.com/qt/qtdeclarative/archive/v5.11.3.tar.gz
+        sha256: 6eafaa58a964dddbfcae6866fad9c9c909f7573d0e3aaf22ad6e7aca51be0268
+
+  - name: qt5-quickcontrols
+    sources:
+      - type: archive
+        url: https://github.com/qt/qtquickcontrols/archive/v5.11.3.tar.gz
+        commit: 0e847960b2613680f9fc24c6f10bfa9d0d3a9f476ab3f7e2938eee7f46ef8646
+
+  - name: qt5-quickcontrols2
+    sources:
+      - type: archive
+        url: https://github.com/qt/qtquickcontrols2/archive/v5.11.3.tar.gz
+        sha256: d0cc81997b70dc101f12a01364a378b42459ae251602c6b981e9377604d2fcc1
+        mirror-urls:
+        
+  - name: qt5-translations
+    sources:
+      - type: archive
+        url: https://github.com/qt/qttranslations/archive/v5.11.3.tar.gz
+        sha256: 9bd51e5c3ede3f5cfd6c95efc25d5ad71c68e1aa6a26043d3115dfc6a3e97d99
+        
+  - name: mpv
+    sources:
+      - type: archive
+        url: https://github.com/mpv-player/mpv/archive/v0.29.1.tar.gz
+        sha256: f9f9d461d1990f9728660b4ccb0e8cb5dce29ccaa6af567bec481b79291ca623
+
+  - name: openssl
+    sources:
+      - type: archive
+        url: https://github.com/openssl/openssl/archive/OpenSSL_1_1_1a.tar.gz
+        sha256: a660eabd28f55d38538e3e7e2533f64439eb4e118786cbe3d79e4d845b211dcf
+
+  - name: stremio
+    sources:
+      - type: archive
+        url: https://github.com/Stremio/stremio-shell/archive/4.4.25.tar.gz
+        sha256: f2f4f0432a9c84e6f4fc2039ee27cb3635ea4a9341f3f6c823fa7dc96a0a2f6b
